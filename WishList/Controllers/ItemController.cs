@@ -43,11 +43,11 @@ namespace WishList.Controllers
         {
             var obj = _context.Items.Where(x => x.Id == Id);
 
-            if (obj != null)
+            if (obj.Any())
             {
-                _context.Items.RemoveRange(obj);
+                _context.Items.Remove((Item)obj);
+                _context.SaveChanges();
             }
-            _context.SaveChanges();
 
             return RedirectToAction("Index");
         }
